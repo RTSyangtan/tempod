@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tempod/model/create_product_model.dart';
 import 'package:tempod/model/login_model.dart';
 import 'package:tempod/model/product_model.dart';
 import 'package:tempod/model/register_model.dart';
@@ -30,7 +31,7 @@ class ApiService {
       ),
     );
   }
-/*--------------------------User in-----------------------------------------------*/
+  /*--------------------------User in-----------------------------------------------*/
   Future<void> registerUser(RegisterModel user) async {
     try {
       await dio.post('users', data: user.toJson());
@@ -39,51 +40,66 @@ class ApiService {
     }
   }
 
-  Future loginUser(LoginModel user) async{
-    try{
-      final response = await dio.post('auth/login',data: user.toJson());
+  Future loginUser(LoginModel user) async {
+    try {
+      final response = await dio.post('auth/login', data: user.toJson());
       return response.data;
-    }on DioException catch(e){
+    } on DioException catch (e) {
       throw '$e';
     }
   }
 
   /*-----------------------Product Services------------------------------------------*/
-  Future<List<ProductModel>> getProducts()async{
-    try{
+  Future<List<ProductModel>> getProducts() async {
+    try {
       final response = await dio.get('products');
-      return (response.data as List).map((e)=>ProductModel.fromJson(e)).toList();
-    }on DioException catch(e){
+      return (response.data as List)
+          .map((e) => ProductModel.fromJson(e))
+          .toList();
+    } on DioException catch (e) {
       throw '$e';
     }
   }
 
-  Future productById(int id)async{
-    try{
+  Future productById(int id) async {
+    try {
       final response = await dio.get('products/$id');
       return ProductModel.fromJson(response.data);
-    }on DioException catch(e){
+    } on DioException catch (e) {
       throw '$e';
     }
   }
 
-  Future<List<ProductModel>> paginationProduct({required int offset, required int limit})async{
-    try{
-      final response = await dio.get('products',queryParameters:
-      {
-          'offset':offset,
-        'limit':limit
-      });
-      return (response.data as List).map((e)=>ProductModel.fromJson(e)).toList();
-    }on DioException catch(e){
+  Future<List<ProductModel>> paginationProduct({
+    required int offset,
+    required int limit,
+  }) async {
+    try {
+      final response = await dio.get(
+        'products',
+        queryParameters: {'offset': offset, 'limit': limit},
+      );
+      return (response.data as List)
+          .map((e) => ProductModel.fromJson(e))
+          .toList();
+    } on DioException catch (e) {
       throw '$e';
     }
   }
 
-  Future<void> addProduct(ProductModel body)async{
-    try{
-      await dio.post('products/',data: body.toJson());
-    }on DioException catch(e){
+  Future addProduct(CreateProductModel body) async {
+    try {
+      final response = await dio.post('products/', data: body.toJson());
+      return ProductModel.fromJson(response.data);
+    } on DioException catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> deleteProduct(int id) async {
+    try {
+      await dio.post('products/$id');
+    } on DioException catch (e) {
       throw e;
     }
   }

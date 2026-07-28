@@ -13,6 +13,9 @@ final paginationProvider = AsyncNotifierProvider(
   () => PaginationProductProvider(),
 );
 
+final delProductProvider = FutureProvider.family((ref,int id)=>_apiService.deleteProduct(id));
+
+
 class PaginationProductProvider extends AsyncNotifier<List<ProductModel>> {
   int offset = 0;
   final int limit = 10;

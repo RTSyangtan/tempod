@@ -39,6 +39,7 @@ dependencies:
   riverpod: ^3.3.2
   flutter_riverpod: ^3.3.2
   get_storage: ^2.1.1
+  image_picker: ^1.2.3
 
 dev_dependencies:
   flutter_test:
