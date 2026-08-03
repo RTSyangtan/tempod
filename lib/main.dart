@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
-import 'package:tempod/view/pagination_product.dart';
-import 'package:tempod/view/profile_screen.dart';
 import 'package:tempod/view/register_screen.dart';
 
 void main() {
@@ -15,6 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-     home: ProfileScreen(),
+     home: RegisterScreen(),
     );
 }}

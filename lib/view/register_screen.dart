@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:tempod/model/register_model.dart';
 import 'package:tempod/provider/register_provider.dart';
 import 'package:tempod/view/login_screen.dart';
+import 'package:tempod/view/widget/custom_textfield.dart';
 
 class RegisterScreen extends ConsumerWidget {
   const RegisterScreen({super.key});
@@ -23,30 +24,10 @@ class RegisterScreen extends ConsumerWidget {
         child: Column(
           spacing: 10,
           children: [
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Name',
-              ),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Email',
-              ),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Password',
-              ),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Avatar',
-              ),
-            ),
+            CustomTextField(label: 'Name', controller: nameCtrl),
+            CustomTextField(label: 'Email', controller: emailCtrl),
+            CustomTextField(label: 'Password', controller: passwordCtrl),
+            CustomTextField(label: 'Avatar', controller: avatarCtrl),
             ElevatedButton(
               onPressed: state.isLoading
                   ? null
