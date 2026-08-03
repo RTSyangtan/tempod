@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tempod/model/create_product_model.dart';
 import 'package:tempod/model/login_model.dart';
 import 'package:tempod/model/product_model.dart';
@@ -46,6 +48,35 @@ class ApiService {
       return response.data;
     } on DioException catch (e) {
       throw '$e';
+    }
+  }
+
+  /*-------------------------Login with Google---------------------------------------*/
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  Future sigInWithGoogle() async{
+
+    try{
+
+      await _googleSignIn.initialize();
+
+      //open google account picker
+      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
+
+      //Get google auth detail
+      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
+
+      //create firebase credential
+      final credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken
+      );
+
+      //sign in to firebase
+      final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+
+      return userCredential;
+    }catch(e){
+      throw Exception('Google SingIn Failed: $e');
     }
   }
 

@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:tempod/model/register_model.dart';
 import 'package:tempod/provider/register_provider.dart';
-import 'package:tempod/view/login_screen.dart';
+import 'package:tempod/view/auths/login_screen.dart';
+import 'package:tempod/view/widget/bottom_navBar.dart';
 import 'package:tempod/view/widget/custom_textfield.dart';
 
 class RegisterScreen extends ConsumerWidget {
@@ -38,7 +39,6 @@ class RegisterScreen extends ConsumerWidget {
                         password: passwordCtrl.text,
                         avatar: avatarCtrl.text,
                       );
-
                       await ref
                           .read(registerProvider.notifier)
                           .registerUser(user);
@@ -56,6 +56,25 @@ class RegisterScreen extends ConsumerWidget {
                   ? CircularProgressIndicator()
                   : Text('Register'),
             ),
+            Text('OR'),
+            OutlinedButton.icon(
+              onPressed: ()async {
+               await ref.read(registerProvider.notifier).signInWithGoogle();
+
+               final state = ref.read(registerProvider);
+
+               if(!state.hasError){
+                 Get.to(()=>MyBottomNavbar());
+               }
+
+              },
+              icon: Image.asset(
+                'assets/googleImg.jpg',
+                height: 24,
+                width: 24,
+              ),
+              label: const Text('Continue with Google'),
+            )
           ],
         ),
       ),

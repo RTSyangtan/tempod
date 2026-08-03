@@ -33,4 +33,14 @@ class RegisterProvider extends AsyncNotifier {
      });
 
   }
+
+  Future<void> signInWithGoogle() async{
+
+    state = const AsyncLoading();
+
+    state = await AsyncValue.guard(()async{
+      final userCredential = await _apiService.sigInWithGoogle();
+      print(userCredential.user?.email);
+    });
+  }
 }
