@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "647595587327",
+    "project_id": "platizstorebase",
+    "storage_bucket": "platizstorebase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647595587327:android:bef6ab49da808862703eca",
+        "android_client_info": {
+          "package_name": "com.example.tempod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647595587327-mdgtbs68f2ebjojhht38s3vihcft3e0c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-a1IYmQnqtePWdEMvl4WxSUOEU-G6Nzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647595587327-mdgtbs68f2ebjojhht38s3vihcft3e0c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "647595587327-nshtvm5t9qgl18eq17pqlmqab5vqfaq5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tempod"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
